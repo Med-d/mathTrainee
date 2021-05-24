@@ -1,0 +1,245 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    margin: 0px;
+    background-color: cadetblue;
+}
+
+div{
+    background-color: cadetblue;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+ul{
+    text-align: center;
+    font-size: 40px;    
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+
+ul > a{
+    text-decoration: none;
+}
+
+.wrapper{
+    max-width: 713;
+    min-height: 1024;
+}
+
+button{
+    height: 90px;
+    width: 437px;
+    border-radius: 42px;
+    margin-bottom: 70px;
+    margin-top: 10px;
+    background-color: black;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+header{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 75px;
+}
+
+input{
+    size:  40px;
+}
+
+p{
+   padding-top: 0px;
+}
+
+label{
+    font-size: 30px;
+}
+
+.placeholder-form {
+    box-sizing: border-box;
+    width: 320px;
+    margin: 20px auto;
+}
+.placeholder-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.placeholder-container input {
+    background-color: #000;
+    border: 2px solid #BFE2FF;
+    box-sizing: border-box;
+    color: #FFF;
+    font-size: 16px;
+    line-height: 16px; 
+    height: 50px;
+    outline: 0;
+    padding: 0 20px;
+    width: 100%;
+    border-radius: 16px; /* скругление поля ввода */
+}
+.placeholder-container label {
+    color: #000;
+    font-family: Verdana, sans-serif;  
+    background-color: #FFF;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 5px 10px;
+    pointer-events: none;
+    position: absolute;
+    transition: all 200ms;
+    top: 12px;
+    left: 15px; /* отступ текста внутри поля */
+    background-color: #BFE2FF;
+}
+.placeholder-container input:focus + label,
+.placeholder-container input:not(:placeholder-shown) + label{
+    top: -10px;
+    left: 10px;
+    font-size: 11px;
+    background-color: #BFE2FF;
+    padding: 2px 10px;
+}
+
+.b1{
+    height: 50px;
+    width: 237px;
+    border-radius: 42px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    background-color: black;
+    color: white;
+    font-size: 22px;
+}
+
+.reg1{
+    margin-top: 110px;
+    margin-bottom: 25px;
+}
+
+.b2{
+    height: 73px;
+    width: 188px;
+    border-radius: 42px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    left:42%;
+    margin-bottom: 0px;
+}
+
+.b3{
+    height: 100px;
+    width: 270px;
+    border-radius: 42px;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+
+li{
+    max-width: 300px;
+    text-align: center;
+}
+
+.ch{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 150px;
+}
+
+.solopage{
+    display: flex;
+    justify-content: space-between;
+}
+
+.b4{
+    height: 60px;
+    width: 188px;
+    border-radius: 42px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 0px;
+    position: relative;
+    right: 42%;
+}
+
+.b5{
+    height: 100px;
+    width: 236px;
+    border-radius: 30px;    
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    font-size: 28px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.b6{
+    height: 60px;
+    width: 188px;
+    border-radius: 42px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 0px;
+    position: relative;
+    margin-top: 50px;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.b7{
+    height: 60px;
+    width: 188px;
+    border-radius: 42px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+h2{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.soloplay{
+    display:inline-flex;
+    justify-content: space-between;
+    max-width: 1082px;
+    margin-left: 125px;
+}
+
+.tour > ul{
+    margin-top: 200px;
+}
+
+.image{
+    max-width: 100%;
+    margin-top: 40px;
+    border-radius: 42px;
+    width: 700px; 
+    height: 372px;
+}
+
+.s{
+    text-align: center;
+}
+
+.solo22{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+}
