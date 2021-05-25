@@ -1,0 +1,27 @@
+{
+  "name": "mathtrainee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Med-d/mathTrainee.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Med-d/mathTrainee/issues"
+  },
+  "homepage": "https://github.com/Med-d/mathTrainee#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-plugin-node": "^11.1.0"
+  }
+}
