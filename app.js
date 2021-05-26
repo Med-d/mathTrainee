@@ -72,6 +72,23 @@ app.post('/reg', (req, res) => {
 app.post('/', (req, res) => {
   const login = req.body.login;
   const password = req.body.password;
+  if(!usersCollection.find({login: login})){
+    res.json({
+      ok: false,
+      error: 'Такого логина не существует',
+      fields: ['login']
+    })
+  } else if(usersCollection.find({login: login})['password'] != password) {
+    res.json({
+      ok: false,
+      error: 'Неверный пароль',
+      fields: ['password']
+    })
+  } else {
+    res.json({
+      ok: true
+    })
+  }
 })
 
 app.use('/', htmlView)
