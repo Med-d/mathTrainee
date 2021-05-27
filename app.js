@@ -9,20 +9,21 @@ const mongoose = require('mongoose')
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://max:max041202@urfuproject.sgbf0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+let usersCollection
+let db
 async function run(){
   try {
         await client.connect()
         console.log("Connected correctly to server")
+
+        db = client.db('UsersDB')
+        usersCollection = db.collection('Users')
+
     } catch (err) {
         console.log(err.stack)
     }
-    finally {
-        await client.close()
-    }
 }
 run().catch(console.dir)
-const db = client.UserDB
-const usersCollection = db.Users
 
 const PORT = 3000
 
@@ -30,10 +31,10 @@ app.set('view engine', 'ejs')
 app.use(express.static('views'))
 app.engine('html', require('ejs').renderFile);
 
-app.post('/reg', (req, res) => {
-  const login = req.body.login;
-  const password = req.body.password;
-  const passwordConfirm = req.body.confirm;
+app.get('/registration', async function(req, res){
+  const login = req.query.login;
+  const password = req.query.password;
+  const passwordConfirm = req.query.confirm;
   if(!login || !password || !passwordConfirm){
     res.json({
       ok: false,
@@ -52,16 +53,17 @@ app.post('/reg', (req, res) => {
       error: "Длина логина должна быть от 3 до 12 символов",
       fields: ['login']
     })
-  } else if (usersCollection.find({'login': login})) {
+  } else if (await usersCollection.findOne({'login': login})) {
     res.json({
       ok: false,
       error: "Этот логин занят. Выберите другой",
       fields: ['login']
     })
   } else {
-    usersCollection.insert({
+    usersCollection.insertOne({
       login: login,
-      password: password
+      password: password,
+      rating: 0
     })
     res.json({
       ok: true
