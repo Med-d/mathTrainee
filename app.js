@@ -3,12 +3,13 @@ const app = express()
 const router = express.Router()
 const path = require("path")
 const htmlView = require("./router.js")
-const mongoose = require('mongoose')
+const session = require("express-session")
 
+const MongoStore = require("connect-mongo")
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://max:max041202@urfuproject.sgbf0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const url = "mongodb+srv://max:max041202@urfuproject.sgbf0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 let usersCollection
 let db
 async function run(){
@@ -30,6 +31,18 @@ const PORT = 3000
 app.set('view engine', 'ejs')
 app.use(express.static('views'))
 app.engine('html', require('ejs').renderFile);
+
+app.use(
+  session({
+    secret: 'adsmvSCmkcdslSNVLvdsnvlsVSL',
+    resave: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: url,
+      dbName: 'UsersDB'
+    })
+  })
+)
 
 app.get('/registration', async function(req, res){
   const login = req.query.login;
@@ -71,25 +84,33 @@ app.get('/registration', async function(req, res){
   }
 })
 
-app.post('/', (req, res) => {
+app.get('/login', (req, res) => {
   const login = req.query.login;
   const password = req.query.password;
-  if(!usersCollection.find({login: login})){
+  if(!login || !password){
     res.json({
       ok: false,
-      error: 'Такого логина не существует',
-      fields: ['login']
-    })
-  } else if(usersCollection.find({login: login})['password'] != password) {
-    res.json({
-      ok: false,
-      error: 'Неверный пароль',
-      fields: ['password']
+      error: "Все поля должны быть заполнены",
+      fields: ['login', 'password']
     })
   } else {
-    res.json({
-      ok: true
-    })
+    usersCollection.findOne({'login' : login})
+      .then(user => {
+        if(!user || password != user.password) {
+          res.json({
+            ok: false,
+            error: "Логин и/или пароль неверны",
+            fields: ['login', 'password']
+          })
+        } else {
+          req.session.userId = user.Id
+          req.session.userLogin = user.login
+          res.json({
+            ok: true
+          })
+        }
+      })
+      .catch()
   }
 })
 
