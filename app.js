@@ -72,8 +72,8 @@ app.get('/registration', async function(req, res){
 })
 
 app.post('/', (req, res) => {
-  const login = req.body.login;
-  const password = req.body.password;
+  const login = req.query.login;
+  const password = req.query.password;
   if(!usersCollection.find({login: login})){
     res.json({
       ok: false,
