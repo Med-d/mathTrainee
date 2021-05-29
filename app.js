@@ -114,6 +114,19 @@ app.get('/login', (req, res) => {
   }
 })
 
+app.post('/choice', (req, res) => {
+  const login = req.session.userLogin
+  const id = req.session.userId
+  console.log(login)
+  usersCollection.findOne({'login' : login})
+  .then(user => {
+    res.json({
+      login: login,
+      rating: user.rating
+    })
+  })
+})
+
 app.use('/', htmlView)
 
 app.listen(process.env.port || PORT, () => console.log("Server started work on port " + PORT))
