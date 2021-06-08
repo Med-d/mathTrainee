@@ -12,7 +12,8 @@ $(() => {
       url: '/login'
     }).done((data) => {
       console.log(data)
-      //TODO: сюда тебе надо написать что ты будешь делать с полями в случае если ok: false
+      if(data.ok){
+        window.location.replace("/choice")
     })
   })
 })
