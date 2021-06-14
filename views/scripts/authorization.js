@@ -14,6 +14,7 @@ $(() => {
       console.log(data)
       if(data.ok){
         window.location.replace("/choice")
+    }
     })
   })
 })

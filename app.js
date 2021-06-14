@@ -48,7 +48,6 @@ app.get('/registration', async function(req, res){
   const login = req.query.login;
   const password = req.query.password;
   const passwordConfirm = req.query.confirm;
-  console.log(login, password, passwordConfirm)
   if(!login || !password || !passwordConfirm){
     res.json({
       ok: false,
@@ -126,6 +125,14 @@ app.post('/choice', (req, res) => {
       rating: user.rating
     })
   })
+})
+
+app.get('/logout', (req, res) => {
+  if(req.session) {
+    req.session.destroy(() => {
+      res.redirect('/')
+    })
+  }
 })
 
 app.use('/', htmlView)
