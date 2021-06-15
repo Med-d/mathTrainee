@@ -3,6 +3,7 @@ body{
     color: white;
     margin: 0px;
     background-image: url("bg.png");
+    background-size: cover;
 }
 
 div{
@@ -13,7 +14,7 @@ div{
 
 ul{
     text-align: center;
-    font-size: 40px;    
+    font-size: 40px;
     margin-top: 0px;
     margin-bottom: 0px;
     padding-left: 0px;
@@ -74,7 +75,7 @@ label{
     box-sizing: border-box;
     color: #FFF;
     font-size: 16px;
-    line-height: 16px; 
+    line-height: 16px;
     height: 50px;
     outline: 0;
     padding: 0 20px;
@@ -83,7 +84,7 @@ label{
 }
 .placeholder-container label {
     color: #000;
-    font-family: Verdana, sans-serif;  
+    font-family: Verdana, sans-serif;
     background-color: #FFF;
     font-size: 16px;
     line-height: 16px;
@@ -175,7 +176,7 @@ li{
 .b5{
     height: 100px;
     width: 236px;
-    border-radius: 30px;    
+    border-radius: 30px;
     margin-bottom: 10px;
     background-color: black;
     color: white;
@@ -245,7 +246,7 @@ h2{
     max-width: 100%;
     margin-top: 40px;
     border-radius: 42px;
-    width: 700px; 
+    width: 700px;
     height: 372px;
 }
 
@@ -274,6 +275,7 @@ h2{
 .solo22222{
     text-align: center;
     margin-top: 40px;
+    font-size: 30px;
 }
 
 a{

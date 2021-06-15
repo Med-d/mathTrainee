@@ -37,6 +37,7 @@ $(() => {
         }).done((data) => {
           if(!data.finded){
             alert("Все задания из этого раздела сделаны")
+            window.location.replace('/solo')
           } else {
             $.ajax({
               contentType : 'json',

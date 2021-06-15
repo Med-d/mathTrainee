@@ -155,6 +155,10 @@ app.get('/soloTheme', async function (req, res) {
           return false
         }
       })
+      setTimeout(() => {
+        if (!sended){
+          res.json({finded: false})
+      }}, 1000)
     })
   })
 })
