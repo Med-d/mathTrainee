@@ -2,12 +2,20 @@ const express = require("express")
 const router = express.Router()
 
 router.get('/', (req, res) =>{
+  if(req.session.userLogin){
+    res.redirect('/choice')
+    return
+  }
   res.render('index.ejs')
 })
 router.get('/choice', (req, res) => {
   res.render('choice.ejs')
 })
 router.get('/reg', (req, res) => {
+  if(req.session.userLogin){
+    res.redirect('/choice')
+    return
+  }
   res.render('reg.ejs')
 })
 router.get('/solo', (req, res) => {
