@@ -10,8 +10,9 @@ const MongoStore = require("connect-mongo")
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://max:max041202@urfuproject.sgbf0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
-let usersCollection
 let db
+let usersCollection
+let tasksCollection
 async function run(){
   try {
         await client.connect()
@@ -19,6 +20,7 @@ async function run(){
 
         db = client.db('UsersDB')
         usersCollection = db.collection('Users')
+        tasksCollection = db.collection('Tasks')
 
     } catch (err) {
         console.log(err.stack)
@@ -76,7 +78,9 @@ app.get('/registration', async function(req, res){
     usersCollection.insertOne({
       login: login,
       password: password,
-      rating: 0
+      rating: 0,
+      doneTasks: [],
+      currentTask: ''
     })
     res.json({
       ok: true
@@ -114,10 +118,17 @@ app.get('/login', (req, res) => {
   }
 })
 
+app.get('/logout', (req, res) => {
+  if(req.session) {
+    req.session.destroy(() => {
+      res.redirect('/')
+    })
+  }
+})
+
 app.post('/choice', (req, res) => {
   const login = req.session.userLogin
   const id = req.session.userId
-  console.log(login)
   usersCollection.findOne({'login' : login})
   .then(user => {
     res.json({
@@ -127,12 +138,72 @@ app.post('/choice', (req, res) => {
   })
 })
 
-app.get('/logout', (req, res) => {
-  if(req.session) {
-    req.session.destroy(() => {
-      res.redirect('/')
+app.get('/soloTheme', async function (req, res) {
+  const login = req.session.userLogin
+  const theme = req.query.theme
+  let sended = false
+  usersCollection.findOne({'login' : login})
+  .then(user => {
+    tasksCollection.find({ "theme" : theme }, {}, async function (err, cursor){
+      await cursor.each((err, task) => {
+        if(task != null && !user.doneTasks.includes(task.taskName)){
+          res.json({
+            finded: true,
+            task: task
+          })
+          sended = true
+          return false
+        }
+      })
     })
-  }
+  })
+})
+
+app.get('/putTask', (req, res) => {
+  let task = JSON.stringify(req.query.task)
+  usersCollection.findOneAndUpdate(
+    { 'login' : req.session.userLogin },
+    { $set: { 'currentTask' : task } }
+  )
+  res.json({ok: true})
+})
+
+app.get('/getTask', (req, res) => {
+  usersCollection.findOne({ login : req.session.userLogin })
+  .then(user => {
+    res.json({
+      task: JSON.parse(user.currentTask)
+    })
+  })
+})
+
+app.get('/checkAnswer', (req, res) => {
+  const answer = req.query.answer
+  const taskName = req.query.taskName
+  const login = req.session.userLogin
+  let rating
+  tasksCollection.findOne({'taskName' : taskName})
+  .then(task => {
+    if(task.answer == answer){
+      usersCollection.findOne({'login' : login})
+      .then(user => {
+        rating = user.rating
+        usersCollection.findOneAndUpdate(
+          {'login' : login},
+          { $push: {'doneTasks' : task.taskName},
+            $set: {'rating' : rating + task.rating}
+        })
+      })
+        res.json({
+          ok: true,
+          theme: task.theme
+        })
+    } else {
+      res.json({
+        ok: false
+      })
+    }
+  })
 })
 
 app.use('/', htmlView)

@@ -13,9 +13,11 @@ router.get('/reg', (req, res) => {
 router.get('/solo', (req, res) => {
   res.render('solo.ejs')
 })
+
 router.get('/solo2', (req, res) => {
   res.render('solo2.ejs')
 })
+
 router.get('/tour', (req, res) => {
   res.render('tour.ejs')
 })

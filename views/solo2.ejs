@@ -8,20 +8,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/putTask.js"></script>
 </head>
 <body>
-    <ul><img src="img\1.png" class="image"></ul>
+    <div id='taskName'></div>
+    <div id="task"></div>
     <div class="placeholder-form">
     <ul>
         <div class="placeholder-container">
-            <input type="text" placeholder=" " />
+            <input type="text" placeholder=" " id='answer'/>
             <label>Ответ</label>
         </div>
+        <button id='button-sendAnswer'>Отправить ответ</button>
     </ul>
     </div>
     <ul class="solo22">
         <form action="solo"><button class="b7">К темам</button></form>
         <form action=""><button class="b7">Пропустить</button></form>
     </ul>
+
+  <script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+  </script>
 </body>
 </html>
