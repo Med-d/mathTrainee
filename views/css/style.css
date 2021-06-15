@@ -2,11 +2,11 @@ body{
     font-family: 'Montserrat', sans-serif;
     color: white;
     margin: 0px;
-    background-color: cadetblue;
+    background-image: url("bg.png");
 }
 
 div{
-    background-color: cadetblue;
+
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -128,7 +128,7 @@ label{
     color: white;
     font-size: 20px;
     position: relative;
-    left:42%;
+    left:34%;
     margin-bottom: 0px;
 }
 
@@ -205,6 +205,25 @@ li{
     color: white;
     font-size: 20px;
     margin-bottom: 0px;
+    margin-top: 100px;
+}
+
+.b8{
+    height: 73px;
+    width: 188px;
+    border-radius: 42px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    right: 34%;
+    margin-bottom: 0px;
+}
+
+.b9{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: -55px;
 }
 
 h2{
@@ -214,8 +233,6 @@ h2{
 }
 
 .soloplay{
-    display:inline-flex;
-    justify-content: space-between;
     max-width: 1082px;
     margin-left: 125px;
 }
@@ -242,4 +259,24 @@ h2{
     margin-left: 50px;
     margin-right: 50px;
     margin-top: 50px;
+}
+
+.solo222{
+    margin-top: 150px;
+}
+
+.solo2222{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.solo22222{
+    text-align: center;
+    margin-top: 40px;
+}
+
+a{
+    color: blanchedalmond;
+    text-decoration: none;
 }
