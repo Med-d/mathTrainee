@@ -6,6 +6,6 @@ $(document).ready(() => {
   }).done((data) => {
     console.log(data)
     $('#user-login').html(data.login)
-    $('#user-rate').html(data.rating)
+    $('#user-rate').html("Рейтинг: " + data.rating)
   })
 })
