@@ -146,7 +146,8 @@ app.get('/soloTheme', async function (req, res) {
   .then(user => {
     tasksCollection.find({ "theme" : theme }, {}, async function (err, cursor){
       await cursor.each((err, task) => {
-        if(task != null && !user.doneTasks.includes(task.taskName)){
+        if(task != null && !user.doneTasks.includes(task.taskName) && !sended){
+          console.log(user.doneTasks.includes(task.taskName), task.taskName)
           res.json({
             finded: true,
             task: task
@@ -157,8 +158,9 @@ app.get('/soloTheme', async function (req, res) {
       })
       setTimeout(() => {
         if (!sended){
+          console.log(1)
           res.json({finded: false})
-      }}, 1000)
+      }}, 2000)
     })
   })
 })
